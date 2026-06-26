@@ -72,7 +72,7 @@ ConectaPlusPlus
 
 ---
 
-## 📸 Telas do Sistema
+## Telas do Sistema
 
 <table>
 
