@@ -1,0 +1,22 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+
+    background-image: url("foto-historia.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.foto-historia{
+    width: 360px;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+}
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: url("../Imagens/historia.png") center/cover no-repeat
+}

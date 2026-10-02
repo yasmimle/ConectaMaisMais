@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados da ONG</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <main class="main">
+        <header class="topbar">
+            <h1>Dados da ONG</h1>
+            <a href="admin.html" class="profile-btn" style="text-decoration:none; display:inline-block;">
+                Voltar
+            </a>
+        </header>
+
+        <section class="card ong-card">
+    <h2>Dados da ONG</h2>
+
+    <div class="info">
+        <span>Nome</span>
+        <div class="editable">
+            <span id="ongNomeText">Conecta++</span>
+        </div>
+    </div>
+
+    <div class="info">
+        <span>Telefone</span>
+        <div class="editable">
+            <span id="ongTelefoneText">(11) 91910-0860</span>
+        </div>
+        <button onclick="abrirEdicaoONG('telefone')">Editar</button>
+    </div>
+
+    <div class="info">
+        <span>Email</span>
+        <div class="editable">
+            <span id="ongEmailText">contato@ong.com</span>
+        </div>
+        <button onclick="abrirEdicaoONG('email')">Editar</button>
+    </div>
+
+    <div class="info">
+        <span>Endereço</span>
+        <div class="editable">
+            <span id="ongEnderecoText">Rua Gugu, São Paulo SP</span>
+        </div>
+        <button onclick="abrirEdicaoONG('endereco')">Editar</button>
+    </div>
+
+    <div class="info">
+        <span>CNPJ</span>
+        <div class="editable">
+            <span id="ongCnpjText">12345678000199</span>
+        </div>
+    </div>
+</section>
+    </main>
+
+    <script>
+        function editarONG(campo) {
+            const campos = {
+                telefone: { texto: "ongTelefoneText", input: "ongTelefoneInput" },
+                email: { texto: "ongEmailText", input: "ongEmailInput" },
+                endereco: { texto: "ongEnderecoText", input: "ongEnderecoInput" }
+            };
+
+            const alvo = campos[campo];
+            if (!alvo) return;
+
+            const span = document.getElementById(alvo.texto);
+            const input = document.getElementById(alvo.input);
+
+            span.classList.add("hidden-input");
+            input.classList.remove("hidden-input");
+            input.focus();
+        }
+
+        function salvarDadosONG() {
+            const telefone = document.getElementById("ongTelefoneInput").value.trim();
+            const email = document.getElementById("ongEmailInput").value.trim();
+            const endereco = document.getElementById("ongEnderecoInput").value.trim();
+
+            localStorage.setItem("ongTelefone", telefone);
+            localStorage.setItem("ongEmail", email);
+            localStorage.setItem("ongEndereco", endereco);
+
+            document.getElementById("ongTelefoneText").textContent = telefone;
+            document.getElementById("ongEmailText").textContent = email;
+            document.getElementById("ongEnderecoText").textContent = endereco;
+
+            document.getElementById("ongTelefoneText").classList.remove("hidden-input");
+            document.getElementById("ongEmailText").classList.remove("hidden-input");
+            document.getElementById("ongEnderecoText").classList.remove("hidden-input");
+
+            document.getElementById("ongTelefoneInput").classList.add("hidden-input");
+            document.getElementById("ongEmailInput").classList.add("hidden-input");
+            document.getElementById("ongEnderecoInput").classList.add("hidden-input");
+
+            alert("Dados da ONG salvos com sucesso!");
+        }
+
+        function carregarDadosONG() {
+            const telefone = localStorage.getItem("ongTelefone");
+            const email = localStorage.getItem("ongEmail");
+            const endereco = localStorage.getItem("ongEndereco");
+
+            if (telefone) {
+                document.getElementById("ongTelefoneText").textContent = telefone;
+                document.getElementById("ongTelefoneInput").value = telefone;
+            }
+
+            if (email) {
+                document.getElementById("ongEmailText").textContent = email;
+                document.getElementById("ongEmailInput").value = email;
+            }
+
+            if (endereco) {
+                document.getElementById("ongEnderecoText").textContent = endereco;
+                document.getElementById("ongEnderecoInput").value = endereco;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", carregarDadosONG);
+        let campoONGAtual = "";
+
+function abrirEdicaoONG(campo) {
+    campoONGAtual = campo;
+
+    const titulos = {
+        telefone: "Editar telefone",
+        email: "Editar email",
+        endereco: "Editar endereço"
+    };
+
+    const valores = {
+        telefone: document.getElementById("ongTelefoneText").textContent,
+        email: document.getElementById("ongEmailText").textContent,
+        endereco: document.getElementById("ongEnderecoText").textContent
+    };
+
+    document.getElementById("tituloEditarONG").textContent = titulos[campo];
+    document.getElementById("valorEditarONG").value = valores[campo];
+    document.getElementById("modalEditarONG").classList.remove("hidden");
+}
+
+function fecharEdicaoONG() {
+    document.getElementById("modalEditarONG").classList.add("hidden");
+}
+
+function confirmarEdicaoONG() {
+    const novoValor = document.getElementById("valorEditarONG").value.trim();
+
+    if (!novoValor) {
+        alert("Preencha o campo.");
+        return;
+    }
+
+    if (campoONGAtual === "telefone") {
+        document.getElementById("ongTelefoneText").textContent = novoValor;
+        localStorage.setItem("ongTelefone", novoValor);
+    }
+
+    if (campoONGAtual === "email") {
+        document.getElementById("ongEmailText").textContent = novoValor;
+        localStorage.setItem("ongEmail", novoValor);
+    }
+
+    if (campoONGAtual === "endereco") {
+        document.getElementById("ongEnderecoText").textContent = novoValor;
+        localStorage.setItem("ongEndereco", novoValor);
+    }
+
+    fecharEdicaoONG();
+    alert("Salvo com sucesso!");
+}
+
+function carregarDadosONG() {
+    const telefone = localStorage.getItem("ongTelefone");
+    const email = localStorage.getItem("ongEmail");
+    const endereco = localStorage.getItem("ongEndereco");
+
+    if (telefone) {
+        document.getElementById("ongTelefoneText").textContent = telefone;
+    }
+
+    if (email) {
+        document.getElementById("ongEmailText").textContent = email;
+    }
+
+    if (endereco) {
+        document.getElementById("ongEnderecoText").textContent = endereco;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", carregarDadosONG);
+    </script>
+<div id="modalEditarONG" class="modal hidden">
+    <div class="modal-content">
+        <h2 id="tituloEditarONG">Editar</h2>
+
+        <input
+            type="text"
+            id="valorEditarONG"
+            placeholder="Novo valor"
+        >
+
+        <div class="modal-actions">
+            <button class="btn-cancelar" onclick="fecharEdicaoONG()">
+                Cancelar
+            </button>
+
+            <button class="btn-salvar" onclick="confirmarEdicaoONG()">
+                Salvar
+            </button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<div id="modalEditarONG" class="modal hidden">
+    <div class="modal-content">
+        <h2 id="tituloEditarONG">Editar</h2>
+
+        <input
+            type="text"
+            id="valorEditarONG"
+            placeholder="Novo valor"
+        >
+
+        <div class="modal-actions">
+            <button class="btn-cancelar" onclick="fecharEdicaoONG()">
+                Cancelar
+            </button>
+
+            <button class="btn-salvar" onclick="confirmarEdicaoONG()">
+                Salvar
+            </button>
+        </div>
+    </div>
+</div>
+
