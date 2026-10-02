@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ONG - Conecta++</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+<!-- VLibras -->
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+
+<header>
+
+<nav class="menu">
+
+<a href="#">Página Inicial</a>
+
+<a href="historia.html">Nossa História</a>
+
+<a href="#" onclick="showSaude()">
+    Lembretes de Saúde
+</a>
+
+<a href="https://wa.me/11915160209" target="_blank">
+Whatsapp
+</a>
+
+<a href="#" onclick="showGolpes()">
+    Prevenção de Golpes
+</a>
+
+<!-- LOGIN ADMIN -->
+
+<div class="admin-area">
+
+<button class="btn-admin" onclick="abrirLogin()">
+    Login Administrativo
+</button>
+
+<div class="login-box" id="loginBox">
+    <h3>Administrador</h3>
+
+    <input type="text" id="loginAdmin" placeholder="Digite seu email">
+    <input type="password" id="senhaAdmin" placeholder="Digite sua senha">
+
+    <button onclick="entrarAdmin()">Entrar</button>
+
+    <p class="esqueci" onclick="abrirRecuperacao()">Esqueci minha senha</p>
+</div>
+<div id="areaRecuperacao" style="display:none;">
+
+<br>
+
+<input
+type="email"
+placeholder="Digite o email para recuperação"
+>
+
+<button onclick="mostrarMensagemRecuperacao()">
+Enviar Recuperação
+</button>
+
+<p
+id="mensagemRecuperacao"
+style="
+margin-top:15px;
+font-size:14px;
+display:none;
+color:green;
+"
+>
+
+Um link de recuperação será enviado para o e-mail cadastrado.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</nav>
+
+</header>
+
+<!-- ===== HERO ===== -->
+
+<section class="hero">
+
+<div class="hero-texto">
+
+<h1>
+Doe e <span>Transforme Vidas!</span>
+</h1>
+
+<p>
+Ajude a nossa ONG a oferecer apoio e cuidado para idosos
+e pessoas em situação de vulnerabilidade.
+Ao se cadastrar, você ajuda a transformar vidas e levar
+cuidado e carinho para quem mais precisa.
+</p>
+
+<div class="botoes-home">
+
+<a href="cadastro.html" class="btn-principal">Clique e Doe!</a>
+
+
+
+
+
+
+<div class="login-usuario" id="loginUsuario">
+
+<h3>Entrar</h3>
+
+<input
+type="text"
+placeholder="Digite seu CPF"
+>
+
+<input
+type="tel"
+placeholder="Digite seu telefone"
+>
+
+<button onclick="entrarUsuario()">
+Entrar
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ===== VLibras ===== -->
+
+<div vw class="enabled">
+
+<div vw-access-button class="active"></div>
+
+<div vw-plugin-wrapper>
+<div class="vw-plugin-top-wrapper"></div>
+</div>
+
+</div>
+
+<!-- ===== SCRIPT ===== -->
+
+<script>
+
+new window.VLibras.Widget('https://vlibras.gov.br/app');
+
+function abrirLogin(){
+
+const box = document.getElementById("loginBox");
+
+if(box.style.display === "block"){
+box.style.display = "none";
+}else{
+box.style.display = "block";
+}
+
+}
+
+function entrarAdmin(){
+
+let login = document.getElementById("loginAdmin").value;
+
+let senha = document.getElementById("senhaAdmin").value;
+
+if(login === "admin" && senha === "1234"){
+
+window.location.href = "admin.html";
+
+}else{
+
+alert("Login ou senha incorretos!");
+
+}
+
+}
+
+function abrirRecuperacao(){
+
+document.getElementById(
+"areaRecuperacao"
+).style.display = "block";
+
+}
+
+function mostrarMensagemRecuperacao(){
+
+document.getElementById(
+"mensagemRecuperacao"
+).style.display = "block";
+
+}
+
+function abrirUsuario(){
+
+const box = document.getElementById(
+"loginUsuario"
+);
+
+if(box.style.display === "block"){
+box.style.display = "none";
+}else{
+box.style.display = "block";
+}
+
+}
+
+function entrarUsuario(){
+
+window.location.href = "doacao.html";
+
+}
+
+
+function showSaude(){
+
+    alert(
+        "LEMBRETES DE SAÚDE\n\n" +
+
+        "• Tome os medicamentos corretamente\n\n" +
+
+        "• Beba bastante água\n\n" +
+
+        "• Faça exames regularmente\n\n" +
+
+        "• Mantenha alimentação saudável\n\n" +
+
+        "• Faça caminhadas leves"
+    );
+}
+
+function showGolpes(){
+
+    alert(
+        "PREVENÇÃO DE GOLPES\n\n" +
+
+        "• Nunca compartilhe senhas\n\n" +
+
+        "• Desconfie de ligações bancárias\n\n" +
+
+        "• Não clique em links desconhecidos\n\n" +
+
+        "• Confirme informações com familiares\n\n" +
+
+        "• Não envie dinheiro para desconhecidos"
+    );
+}
+
+
+function showSaude(){
+
+    document.getElementById('popup').classList.remove('hidden');
+
+    document.getElementById('popupTitle').innerText =
+    "Lembretes de Saúde";
+
+    document.getElementById('popupText').innerHTML =
+
+    "• Tome os medicamentos corretamente<br><br>" +
+
+    "• Beba bastante água<br><br>" +
+
+    "• Faça exames regularmente<br><br>" +
+
+    "• Mantenha alimentação saudável";
+}
+
+function showGolpes(){
+
+    document.getElementById('popup').classList.remove('hidden');
+
+    document.getElementById('popupTitle').innerText =
+    "Prevenção de Golpes";
+
+    document.getElementById('popupText').innerHTML =
+
+    "• Nunca compartilhe senhas<br><br>" +
+
+    "• Desconfie de ligações bancárias<br><br>" +
+
+    "• Não clique em links desconhecidos<br><br>" +
+
+    "• Confirme informações com familiares";
+}
+
+function closePopup(){
+
+    document.getElementById('popup')
+    .classList.add('hidden');
+}
+
+</script>
+
+<div id="popup" class="popup hidden">
+
+    <div class="popup-content">
+
+        <span class="close-btn" onclick="closePopup()">
+            ×
+        </span>
+
+        <h2 id="popupTitle"></h2>
+
+        <p id="popupText"></p>
+
+    </div>
+
+</div>
+
+<div class="acessibilidade">
+    <button type="button" onclick="alterarZoom(0.1)">A+</button>
+    <button type="button" onclick="alterarZoom(-0.1)">A-</button>
+</div>
+
+<script>
+let zoomAtual = 1;
+
+function alterarZoom(delta) {
+    zoomAtual = zoomAtual + delta;
+
+    if (zoomAtual > 1.5) zoomAtual = 1.5;
+    if (zoomAtual < 0.8) zoomAtual = 0.8;
+
+    document.documentElement.style.zoom = zoomAtual;
+}
+</script>
+<div id="popupSaude" class="popup hidden">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopupSaude()">×</span>
+        <h2>Lembretes de Saúde</h2>
+        <p>
+            Beba água, mantenha sua alimentação saudável,
+            tome os remédios corretamente e faça exames regulares.
+        </p>
+    </div>
+</div>
+
+<div id="popupGolpes" class="popup hidden">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopupGolpes()">×</span>
+        <h2>Prevenção de Golpes</h2>
+        <p>
+            Não compartilhe senhas, desconfie de links suspeitos
+            e nunca faça transferências sem confirmar a origem.
+        </p>
+    </div>
+</div>
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+    </div>
+</div>
+
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+function abrirLogin() {
+    const box = document.getElementById("loginBox");
+    box.style.display = box.style.display === "block" ? "none" : "block";
+}
+
+function entrarAdmin() {
+    const usuario = document.getElementById("loginAdmin").value.trim().toLowerCase();
+    const senha = document.getElementById("senhaAdmin").value.trim();
+
+    if (usuario === "admi" && senha === "1234") {
+        localStorage.setItem("tipoUsuario", "administrador");
+        window.location.href = "admin.html";
+        return;
+    }
+
+    if (usuario === "atend" && senha === "1234") {
+        localStorage.setItem("tipoUsuario", "atendente");
+        window.location.href = "atendente.html";
+        return;
+    }
+
+    alert("Login ou senha incorretos!");
+}
+</script>
+</body>
+
+</html>
