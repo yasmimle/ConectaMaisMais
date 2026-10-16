@@ -90,7 +90,7 @@ ConectaPlusPlus
 
 <tr>
 <td align="center">
-<b>Lembretes de Saúde</b><br>
+<b>Avisos de Saúde</b><br>
 <img src="Imagens/lembretes_saude.jpeg" width="420">
 </td>
 
@@ -107,7 +107,7 @@ ConectaPlusPlus
 </td>
 
 <td align="center">
-<b>Painel do Atendente</b><br>
+<b>Painel</b><br>
 <img src="Imagens/painel_atendente.jpeg" width="420">
 </td>
 </tr>
